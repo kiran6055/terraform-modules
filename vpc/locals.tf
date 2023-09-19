@@ -3,13 +3,13 @@ locals {
 }
 
 locals {
-  public_cidr = "10.0.0.1/24"
+  public_cidr = "10.0.1.0/24"
 }
 
 locals {
-  private_cidr = "10.0.0.2/24"
+  private_cidr = "10.0.2.0/24"
 }
 
 locals {
-  database_cidr = "10.0.0.3/24"
+  database_cidr = "10.0.3.0/24"
 }
