@@ -6,8 +6,8 @@
  variable "tags" {
    type = map
    default = {
-    Name = roboshop
-    ENV  = DEV
-    TERRAFORM = true
+    Name = "roboshop"
+    ENV  = "DEV"
+    TERRAFORM = "true"
    }
    }
