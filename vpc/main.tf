@@ -1,5 +1,5 @@
 resource "aws_vpc" "roboshop" {
-  cidr_block       = var.cidr
+  cidr_block       = var.vpc_cidr
   instance_tenancy = "default"
   tags = var.tags
 }
