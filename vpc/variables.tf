@@ -59,10 +59,23 @@ variable "database_subnet_tags" {
   default = {}
 }
 
-variable "PublicRT_tags" {
-  type = map   
+
+variable "database_subnet_group_tags" {
+  type = map
+  default = {}
 }
 
-variable "PrivateRT_tags" {
+variable "igw_tag" {
   type = map
+  default = {}
 }
+
+# for the PublicRT & PrivateRT_tags #DatabaseRT_tags we have used concatfunction in loals.tf in timinginfra
+ variable "PublicRT_tags" {
+ }
+
+ variable "PrivateRT_tags" {
+} 
+
+variable "databaseRT_tags" {
+  }
