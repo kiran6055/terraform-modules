@@ -2,15 +2,15 @@ variable "vpc_cidr" {
   type = string
 }
 
-variable "public_cidr" {
+variable "public_subnet_cidr" {
   type = list
 }
 
-variable "private_cidr" {
+variable "private_subnet_cidr" {
   type = list
 }
 
-variable "database_cidr" {
+variable "database_subnet_cidr" {
   type = list
 }
 
@@ -26,19 +26,27 @@ variable "vpc_tags" {
 }
 
 
+variable "azs" {
+  type = list
+}
 
-variable "publicsubnet_tags" {
+variable "public_subnet_names" {
+  type = list
+}
+
+variable "public_subnet_tags" {
   type = map
 }
 
 
-variable "privatesubnet_tags" {
+variable "private_subnet_tags" {
   type = map
 }
 
 
-variable "databasesubnet_tags" {
+variable "database_subnet_tags" {
   type = map
+  default = {}
 }
 
 variable "PublicRT_tags" {
