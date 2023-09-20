@@ -5,7 +5,7 @@ resource "aws_vpc" "roboshop" {
 }
 
 resource "aws_subnet" "public" {
-  for_each = toset(azs)
+  for_each = toset(local.azs)
   vpc_id     = aws_vpc.roboshop.id
   cidr_block = var.public_cidr[count.index]
   tags = var.publicsubnet_tags-each.value
@@ -13,7 +13,7 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_subnet" "private" {
-  for_each   = toset(azs)
+  for_each   = toset(local.azs)
   vpc_id     = aws_vpc.roboshop.id
   cidr_block = var.private_cidr[count.index]
   tags = var.privatesubnet_tags-each.value
@@ -22,7 +22,7 @@ resource "aws_subnet" "private" {
 }
 
 resource "aws_subnet" "database" {
-  for_each   = toset(azs)
+  for_each   = toset(local.azs)
   vpc_id     = aws_vpc.roboshop.id
   cidr_block = var.database_cidr[count.index]
   tags = var.databasesubnet_tags-each.value
@@ -73,7 +73,7 @@ resource "aws_nat_gateway" "main" {
 
 
 resource "aws_route_table_association" "public" {
-  for_each       = toset(azs)
+  for_each       = toset(local.azs)
   subnet_id      = aws_subnet.public[count.index].id
   route_table_id = aws_route_table.public.id
   
@@ -81,14 +81,14 @@ resource "aws_route_table_association" "public" {
 
 
 resource "aws_route_table_association" "private" {
-  for_each       = toset(azs)
+  for_each       = toset(local.azs)
   subnet_id      = aws_subnet.private[count.index].id
   route_table_id = aws_route_table.private.id
  
 }
 
 resource "aws_route_table_association" "database" {
-  for_each       = toset(azs)
+  for_each       = toset(local.azs)
   subnet_id      = aws_subnet.database[count.index].id
   route_table_id = aws_route_table.private.id
 }
