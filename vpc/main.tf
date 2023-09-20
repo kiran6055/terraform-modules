@@ -1,35 +1,35 @@
-resource "aws_vpc" "main" {
-  cidr_block       = local.cidr
+resource "aws_vpc" "roboshop" {
+  cidr_block       = var.cidr
   instance_tenancy = "default"
   tags = var.tags
 }
 
 resource "aws_subnet" "public" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = local.public_cidr
+  cidr_block = var.public_cidr
   tags = var.publicsubnet_tags
 }
 
 resource "aws_subnet" "private" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = local.private_cidr
+  cidr_block = var.private_cidr
   tags = var.privatesubnet_tags
 }
 
 resource "aws_subnet" "database" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = local.database_cidr
+  cidr_block = var.database_cidr
   tags = var.databasesubnet_tags
 }
 
 resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.roboshop.id
   tags = var.tags
 
 }
 
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.roboshop.id
   tags = var.PublicRT_tags
 
   route {
@@ -40,11 +40,11 @@ resource "aws_route_table" "public" {
 
 
 resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.roboshop.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.main.id
+    nat_gateway_id = aws_nat_gateway.roboshop.id
   }
   tags = var.PrivateRT_tags
 
