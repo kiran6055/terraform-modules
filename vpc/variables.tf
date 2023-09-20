@@ -1,6 +1,5 @@
 variable "vpc_cidr" {
   type = string
- 
 }
 
 variable "public_cidr" {
@@ -9,12 +8,10 @@ variable "public_cidr" {
 
 variable "private_cidr" {
   type = string
-
 }
 
 variable "database_cidr" {
   type = string
-
 }
 
 
@@ -31,7 +28,7 @@ variable "tags" {
 variable "publicsubnet_tags" {
   type = map
   default = {
-   Name = "roboshop-public"
+   Name = "public"
    ENV  = "DEV"
    TERRAFORM = "true"
   }
@@ -41,7 +38,7 @@ variable "publicsubnet_tags" {
 variable "privatesubnet_tags" {
   type = map
   default = {
-   Name = "roboshop-private"
+   Name = "private"
    ENV  = "DEV"
    TERRAFORM = "true"
   }
@@ -51,7 +48,7 @@ variable "privatesubnet_tags" {
 variable "databasesubnet_tags" {
   type = map
   default = {
-   Name = "roboshop-database"
+   Name = "database"
    ENV  = "DEV"
    TERRAFORM = "true"
   }
