@@ -13,3 +13,7 @@ locals {
 locals {
   database_cidr = "10.0.3.0/24"
 }
+
+locals {
+  azs = ["ap-south-1b","ap-south-1c"]
+}

@@ -3,15 +3,15 @@ variable "vpc_cidr" {
 }
 
 variable "public_cidr" {
-  type = string
+  type = list
 }
 
 variable "private_cidr" {
-  type = string
+  type = list
 }
 
 variable "database_cidr" {
-  type = string
+  type = list
 }
 
 
