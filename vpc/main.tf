@@ -26,7 +26,8 @@ resource "aws_subnet" "private" {
   cidr_block = var.private_subnet_cidr[count.index]
   tags = merge(
     var.tags,
-    var.private_subnet_tags
+    var.public_subnet_tags,
+    {"Name" = var.private_subnet_names[count.index]}
   )
   availability_zone = var.azs[count.index]
 
@@ -39,19 +40,20 @@ resource "aws_subnet" "database" {
   cidr_block = var.database_subnet_cidr[count.index]
   tags = merge(
     var.tags,
-    var.database_subnet_tags
+    var.public_subnet_tags,
+    {"Name" = var.database_subnet_names[count.index]}
   )
   availability_zone = var.azs[count.index]
 }
 
 resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.roboshop.id
+  vpc_id = aws_vpc.timing.id
   tags = var.tags
 
 }
 
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.roboshop.id
+  vpc_id = aws_vpc.timing.id
   tags = var.PublicRT_tags
 
   route {
@@ -62,7 +64,7 @@ resource "aws_route_table" "public" {
 
 
 resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.roboshop.id
+  vpc_id = aws_vpc.timing.id
 
   route {
     cidr_block = "0.0.0.0/0"

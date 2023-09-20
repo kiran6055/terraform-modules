@@ -1,3 +1,3 @@
 output "vpc_id" {
-  value = aws_vpc.roboshop.id
+  value = aws_vpc.timing.id
 }

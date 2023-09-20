@@ -34,13 +34,23 @@ variable "public_subnet_names" {
   type = list
 }
 
+variable "private_subnet_names" {
+  type = list
+}
+
+variable "database_subnet_names" {
+  type = list
+}
+
 variable "public_subnet_tags" {
   type = map
+  default = {}
 }
 
 
 variable "private_subnet_tags" {
   type = map
+  default = {}
 }
 
 
