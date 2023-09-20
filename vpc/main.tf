@@ -9,8 +9,8 @@ resource "aws_subnet" "public" {
   count     = length(local.azs)
   vpc_id     = aws_vpc.roboshop.id
   cidr_block = var.public_cidr[count.index]
-  tags = "${var.publicsubnet_tags}-${length(local.azs)[count.index]}"
-  availability_zone = length(local.azs)[count.index]
+  tags = "${var.publicsubnet_tags}"
+  availability_zone = local.azs[count.index]
 }
 
 resource "aws_subnet" "private" {
@@ -18,8 +18,8 @@ resource "aws_subnet" "private" {
   count      = length(local.azs)
   vpc_id     = aws_vpc.roboshop.id
   cidr_block = var.private_cidr[count.index]
-  tags = "${var.privatesubnet_tags}-${length(local.azs)[count.index]}"
-  availability_zone = length(local.azs)[count.index]
+  tags = "${var.privatesubnet_tags}"
+  availability_zone = local.azs[count.index]
 
 }
 
@@ -28,8 +28,8 @@ resource "aws_subnet" "database" {
   count      = length(local.azs)
   vpc_id     = aws_vpc.roboshop.id
   cidr_block = var.database_cidr[count.index]
-  tags = "${var.databasesubnet_tags}-${length(local.azs)[count.index]}"
-  availability_zone = length(local.azs)[count.index]
+  tags = "${var.databasesubnet_tags}"
+  availability_zone = local.azs[count.index]
 }
 
 resource "aws_internet_gateway" "igw" {
