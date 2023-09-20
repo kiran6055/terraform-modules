@@ -5,19 +5,19 @@ resource "aws_vpc" "roboshop" {
 }
 
 resource "aws_subnet" "public" {
-  vpc_id     = aws_vpc.main.id
+  vpc_id     = aws_vpc.roboshop.id
   cidr_block = var.public_cidr
   tags = var.publicsubnet_tags
 }
 
 resource "aws_subnet" "private" {
-  vpc_id     = aws_vpc.main.id
+  vpc_id     = aws_vpc.roboshop.id
   cidr_block = var.private_cidr
   tags = var.privatesubnet_tags
 }
 
 resource "aws_subnet" "database" {
-  vpc_id     = aws_vpc.main.id
+  vpc_id     = aws_vpc.roboshop.id
   cidr_block = var.database_cidr
   tags = var.databasesubnet_tags
 }
@@ -44,7 +44,7 @@ resource "aws_route_table" "private" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.roboshop.id
+    nat_gateway_id = aws_nat_gateway.main.id
   }
   tags = var.PrivateRT_tags
 
