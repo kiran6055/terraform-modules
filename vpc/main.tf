@@ -1,7 +1,10 @@
 resource "aws_vpc" "roboshop" {
   cidr_block       = var.vpc_cidr
   instance_tenancy = "default"
-  tags = var.tags
+  tags = merge(
+    var.tags,
+    var.vpc_tags
+  )
 }
 
 resource "aws_subnet" "public" {
